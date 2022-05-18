@@ -4,7 +4,12 @@ ENV GOPATH="/go"
 
 ENV PATH="${GOPATH}/bin:${PATH}"
 
-RUN sudo dnf install -y git go make && \
+RUN dnf install -y git go make && \
+    go install github.com/kevincobain2000/gobrew/cmd/gobrew@latest
+
+ENV PATH="/root/.gobrew/current/bin:/root/.gobrew/bin:${PATH}"
+
+RUN gobrew use 1.17.9 && \
     git clone https://github.com/algolucky/go-algorand.git -b fix/fedora-dependencies && \
     cd go-algorand && \
     ./scripts/configure_dev.sh && \
