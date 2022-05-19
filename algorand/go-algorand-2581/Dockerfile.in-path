@@ -4,6 +4,7 @@ FROM docker.io/library/golang:1.17.9
 ENV HOME /opt
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils curl git git-core bsdmainutils python3 && \
+    rm -rf /var/lib/apt/lists/* && \
     mkdir -p /opt/algorand/bin && \
     mkdir -p /opt/algorand/data
 ADD https://raw.githubusercontent.com/algorand/go-algorand/23f00c3449fec4d78f3287876a9c103fb531a4c2/cmd/updater/update.sh /opt/algorand/bin/update.sh
