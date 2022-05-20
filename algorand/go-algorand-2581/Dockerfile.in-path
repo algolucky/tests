@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils curl 
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /opt/algorand/bin && \
     mkdir -p /opt/algorand/data
-ADD https://raw.githubusercontent.com/algorand/go-algorand/23f00c3449fec4d78f3287876a9c103fb531a4c2/cmd/updater/update.sh /opt/algorand/bin/update.sh
+ADD https://raw.githubusercontent.com/algorand/go-algorand/bbe4216349eba1e88eebd0fa878b4567c7ffc59f/cmd/updater/update.sh /opt/algorand/bin/update.sh
 RUN chmod 755 /opt/algorand/bin/update.sh
 ENV PATH="/opt/algorand/bin:${PATH}"
 RUN update.sh -i -c nightly -p /opt/algorand/bin -d /opt/algorand/data -n && \
