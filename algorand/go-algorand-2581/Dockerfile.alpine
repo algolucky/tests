@@ -1,0 +1,10 @@
+FROM docker.io/library/alpine:3.15
+
+ENV HOME /opt
+RUN apk add bash curl git tar python3 && \
+    mkdir -p /opt/algorand/bin /opt/algorand/data
+ADD https://raw.githubusercontent.com/algorand/go-algorand/3563b5d8c77ac1bcbfa59312632ec08fb4fbb6c1/cmd/updater/update.sh /opt/algorand/bin/update.sh
+RUN chmod 755 /opt/algorand/bin/update.sh
+WORKDIR /opt/algorand/bin
+RUN ./update.sh -i -c nightly -p /opt/algorand/bin -d /opt/algorand/data -n && \
+    find /opt/algorand
