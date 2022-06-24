@@ -6,8 +6,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils curl git git-core bsdmainutils python3 && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /opt/algorand/bin /opt/algorand/data
-ADD https://raw.githubusercontent.com/algorand/go-algorand/3563b5d8c77ac1bcbfa59312632ec08fb4fbb6c1/cmd/updater/update.sh /opt/algorand/bin/update.sh
+ADD https://raw.githubusercontent.com/algorand/go-algorand/99f31f5b6e4b3af48d00fccb7a4af2ba0b1f7ad3/cmd/updater/update.sh /opt/algorand/bin/update.sh
 RUN chmod 755 /opt/algorand/bin/update.sh
-WORKDIR /opt/algorand/bin
-RUN ./update.sh -i -c nightly -p /opt/algorand/bin -d /opt/algorand/data -n -verify && \
+ENV PATH="/opt/algorand/bin:${PATH}"
+RUN update.sh -i -c nightly -p /opt/algorand/bin -d /opt/algorand/data -n && \
     find /opt/algorand
