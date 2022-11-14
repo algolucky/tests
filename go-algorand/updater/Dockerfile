@@ -1,4 +1,4 @@
-FROM docker.io/library/golang:1.17.9
+FROM docker.io/library/golang:1.17.13
 
 # Basic dependencies.
 ENV HOME /opt
