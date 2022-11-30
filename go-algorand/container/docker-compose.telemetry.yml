@@ -1,0 +1,5 @@
+---
+services:
+  algod:
+    environment:
+      TELEMETRY_NAME: random-local-algod-${NETWORK:-mainnet}

@@ -1,0 +1,5 @@
+services:
+  algod:
+    volumes:
+      - algod-data:${ALGORAND_DATA:-/algod/data}
+      - ./config/archival.json:/etc/config.json

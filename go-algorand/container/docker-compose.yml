@@ -1,0 +1,21 @@
+---
+version: "3"
+services:
+  algod:
+    image: docker.io/wwinder/algod:${TAG:-latest}
+    container_name: ${NETWORK:-mainnet}-algod
+    environment:
+      NETWORK: ${NETWORK:-mainnet}
+      ALGORAND_DATA: ${ALGORAND_DATA:-/algod/data}
+      FAST_CATCHUP: ${FAST_CATCHUP}
+      TOKEN: ${TOKEN:-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+    volumes:
+      - algod-data:${ALGORAND_DATA:-/algod/data}
+    ports:
+      - ${ALGOD_PORT:-8080}:8080
+      - ${GOSSIP_PORT:-4160}:4160
+      - ${METRICS_PORT:-9100}:9100
+
+volumes:
+  algod-data:
+    name: ${NETWORK:-mainnet}-algod-data
